@@ -1,0 +1,129 @@
+<% layout('layouts/base') %>
+
+<% if(currentUser){ %>
+<h3><i>Hello, <%=currentUser.username %></i></h3>  
+  <h1>All films</h1>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Films</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Watched films</button>
+    </li>
+     </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Info</th>
+                <th scope="col">Watched</th>
+                 </tr>
+            </thead>
+            <form action="/films" method="POST">
+             <% for(let film of films){ %> 
+            <tbody>
+            <tr>
+            <td>
+            <img src="<%=film.image%>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" width="100px" height="auto" alt="">
+            </td>
+            <td>
+            <%=film.title%>          
+            </td>
+            <td>
+                <a class="btn btn-primary" href="/films/onefilm/<%=film._id%>">Show <%=film.title%> </a>
+            </td>
+            <td>
+            <button type="submit" name="_id" value="<%=film._id%>" class="btn btn-success" >Add to Watched</button>
+            </td>
+            </tr>
+            </tbody>
+        <% } %>
+    </form> 
+    </table>
+    </div>
+   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <%if(!filmsCheckList) {%>
+          <tbody>
+            <tr>
+            <td>
+            This place for Watched film
+            </td>
+            </tr>
+            </tbody>
+          <% } else if(filmsCheckList){%>
+          <% for(let f of filmsCheckList){ %>         
+<form action="/films?_method=DELETE" method="POST">
+        <tbody>
+        <tr>
+        <td>
+        <img src="<%=f.filmsAll.image%>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" width="100px" height="auto" alt="">
+        </td>
+        <td>
+        <%=f.filmsAll.title%>  
+        </td>
+        <td>
+        <button class="btn btn-danger">Delete</button>
+        </form>
+        </td>
+        </tr>
+        </tbody>
+         <% }%>
+      </table>
+    </div>
+  </div>
+  <% } %> <% } else {%>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Films</button>
+      </li>
+      </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Image</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Info</th>
+                  <th scope="col">Watched</th>
+                   </tr>
+              </thead>
+              <form action="/films" method="POST">
+               <% for(let film of films){ %> 
+              <tbody>
+              <tr>
+              <td>
+              <img src="<%=film.image%>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" width="100px" height="auto" alt="">
+              </td>
+              <td>
+              <%=film.title%>          
+              </td>
+              <td>
+              <a class="btn btn-primary" href="/films/onefilm/<%=film._id%>">Show <%=film.title%> </a>
+              </td>
+              <td>
+              <button type="submit" name="_id" value="<%=film._id%>" class="btn btn-success" >Add to Watched</button>
+              </td>
+              </tr>
+              </tbody>
+          <% } %>
+      </form> 
+      </table>
+      </div>
+ <%} %>   
+
+        
+

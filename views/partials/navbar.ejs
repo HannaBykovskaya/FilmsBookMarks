@@ -1,0 +1,28 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">FilmsBookMarks</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <% if(!currentUser){ %>
+          <a class="nav-link" href="/films/">All films</a>
+          <% } else {%>
+          <a class="nav-link" href="/films/">Your BookMarks</a>
+          <a class="nav-link" href="/films/form/">Add a new film</a>
+          <%} %>  
+        </div>
+        <div class="navbar-nav ml-auto">
+            <% if(!currentUser){ %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a> 
+             <% } else {%>
+            <a class="nav-link" href="/logout">Logout</a>
+             <%} %>  
+        </div>
+      </div>
+    </div>
+  </nav>
+
+ 

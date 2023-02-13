@@ -1,0 +1,46 @@
+<% layout('layouts/base') %>
+
+<div class="row">
+    <h2 class="text-center">Edit film</h2>
+    <div class="col-md-6 offset-md-3">
+    <form action="/films/onefilm/<%=film._id%>/edit" method="POST"  class="validated-form" novalidate>
+<div class="mb-3">
+<label class="form-label" for="title">Title</label>
+<input class="form-control" type="text" id="title" name="title" value="<%=film.title%>" required>
+<div class="valid-feedback">
+    Looks good!
+</div>
+</div> 
+
+ <div class="mb-3">
+    <label class="form-label" for="year">Year of Realize</label>
+<input class="form-control" type="number" id="year" name="year" value="<%=film.year%>" required>
+<div class="valid-feedback">
+    Looks good!
+</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="genre">Genre</label>
+<input class="form-control" type="text" id="genre" name="genre" value="<%=film.genre%>" required>
+<div class="valid-feedback">
+    Looks good!
+</div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="image">Image URL</label>
+<input class="form-control" type="text" id="image" name="image" value="<%=film.image%>" required>
+<div class="valid-feedback">
+    Looks good!
+</div>
+</div> 
+
+<div class="mb-3"><button class="btn btn-success">Save</button>
+</div>
+</form> 
+
+<a href="/">Back</a>      
+    </div>
+</div>
+

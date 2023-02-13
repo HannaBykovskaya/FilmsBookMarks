@@ -1,0 +1,30 @@
+<% layout('layouts/base') %>
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+      <img src="<%=film.image%>" class="img-fluid rounded-start" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%=film.title%></h5>
+          <p class="card-text"><%=film.year%></p>
+          <p class="card-text"><%=film.genre%></p>
+          <% if(currentUser && film.author.equals(currentUser._id)){ %>
+          <div class="card-text">
+          <a href="/films/onefilm/<%=film._id%>/edit" class="card-text btn btn-info">Edit</a> 
+          <form class="d-inline" action="/films/onefilm/<%=film._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+          </form>
+         </div>
+        <% } %>   
+        <div class="card-text text-muted">
+       <br>
+        <small>Last updated by <%=film.author.username%> 3 mins ago</small>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+
+
